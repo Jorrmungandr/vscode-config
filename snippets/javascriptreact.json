@@ -43,5 +43,41 @@
 	"References": {
 		"prefix": "ref",
 		"body": [ "ref={($1) => { this.$0 = $1; }}" ]
+	},
+	"Default Function": {
+		"prefix": "ecf",
+		"body": [
+			"import React from 'react';",
+			"import './${TM_DIRECTORY/^.+\\/(.*)$/$1/}.scss';",
+			"",
+			"function ${TM_DIRECTORY/^.+\\/(.*)$/$1/}() {",
+			"\treturn (",
+			"\t\t$0",
+			"\t);",
+			"}",
+			"",
+			"export default ${TM_DIRECTORY/^.+\\/(.*)$/$1/};",
+			""
+		]
+	},
+	"Default Props and Prop Types": {
+		"prefix": "ppt",
+		"body": [
+			"${TM_DIRECTORY/^.+\\/(.*)$/$1/}.propTypes = {",
+			"\t$0",
+			"};",
+			"",
+			"${TM_DIRECTORY/^.+\\/(.*)$/$1/}.defaultProps = {",
+			"\t$1",
+			"};"
+		]
+	},
+	"React map": {
+		"prefix": "rmap",
+		"body": [
+			"{$1.map(($2) => (",
+			"\t$0",
+			"))}"
+		],
 	}
 }
