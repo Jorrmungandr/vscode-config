@@ -10,6 +10,8 @@ alias yy='yarn init -y'
 alias yi='yarn install'
 alias ya='yarn add'
 alias ys='yarn start'
+alias yc='yarn compile'
+alias ysr='yarn serve'
 alias yr='yarn add react react-dom react-scripts'
 alias ye='yarn add eslint --dev'
 
@@ -21,3 +23,12 @@ alias cc='cd client'
 alias cs='cd server'
 
 alias python='python3'
+
+alias dk='sudo fuser -k 3000/tcp'
+
+alias mkvenv='python -m venv venv'
+alias activate='source venv/bin/activate'
+alias pipu='python3 -m pip install --upgrade pip'
+alias pipf='pip freeze -l > requirements.txt'
+
+alias smong='sudo systemctl start mongod'
