@@ -1,9 +1,5 @@
 {
-	"Require": {
-		"prefix": "rq",
-		"body": "const $0 = require('$0');",
-		"description": "Require modules"
-	},
+
 	"Create express": {
 		"prefix": "ex",
 		"body": [
@@ -43,10 +39,34 @@
 		"body": "app.use('/$1', express.static(path.join(__dirname, '/$1')));",
 		"description": "Create app get"
 	},
+
+	"Require": {
+		"prefix": "rq",
+		"body": "const $0 = require('$0');",
+		"description": "Require modules"
+	},
+	"Import": {
+		"prefix": "imp",
+		"body": "import $0 from '$0';",
+		"description": "Import modules"
+	},
+	"Console log": {
+		"prefix": "clg",
+		"body": "console.log($1);$0",
+		"description": "Log things"
+	},
 	"Inline Arrow Function": {
 		"prefix": "ifn",
 		"body": [
 			"($1) => { $0 };"
+		]
+	},
+	"Arrow Function": {
+		"prefix": "afn",
+		"body": [
+			"(${1:params}) => {",
+			"\t$2",
+			"};$0"
 		]
 	},
 	"Immediately Invoked Function Expression": {

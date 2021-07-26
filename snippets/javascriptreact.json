@@ -1,55 +1,7 @@
 {
-	"Bind this": {
-		"prefix": "bnd",
-		"body": [
-			"this.$1 = this.$1.bind(this);"
-		],
-		"description": "Binds the this to the method in react"
-	},
-	"Default Class": {
-		"prefix": "ecc",
-		"body": [
-			"import React, { Component } from 'react';",
-			"",
-			"export default class $1 extends Component {",
-			"\tconstructor(props) {",
-			"\t\tsuper(props);",
-			"\t}",
-			"",
-			"\trender() {",
-			"\t\treturn (",
-			"\t\t\t$2",
-			"\t\t);",
-			"\t}",
-			"};"
-		],
-		"description": "Import react, creates class and esports it"
-	},
-	"Create state": {
-		"prefix": "st",
-		"body": [
-			"this.state = {",
-			"\t$1",
-			"};"
-		],
-		"description": "Creates state"
-	},
-	"Inline Arrow Function": {
-		"prefix": "ifn",
-		"body": [
-			"($1) => { $0 }"
-		]
-	},
-	"References": {
-		"prefix": "ref",
-		"body": [ "ref={($1) => { this.$0 = $1; }}" ]
-	},
 	"Default Function": {
 		"prefix": "ecf",
 		"body": [
-			"import React from 'react';",
-			"import './${TM_DIRECTORY/^.+\\/(.*)$/$1/}.scss';",
-			"",
 			"function ${TM_DIRECTORY/^.+\\/(.*)$/$1/}() {",
 			"\treturn (",
 			"\t\t$0",
@@ -60,24 +12,133 @@
 			""
 		]
 	},
-	"Default Props and Prop Types": {
-		"prefix": "ppt",
+	"Context File": {
+		"prefix": "cfile",
 		"body": [
-			"${TM_DIRECTORY/^.+\\/(.*)$/$1/}.propTypes = {",
-			"\t$0",
-			"};",
+			"import { createContext, useContext } from 'react';",
 			"",
+			"const ${1/(.*)/${1:/capitalize}/}Context = createContext({",
+			"\tadd${1/(.*)/${1:/capitalize}/}: () => {},",
+			"});",
+			"",
+			"function ${1/(.*)/${1:/capitalize}/}Provider({ children }) {",
+			"\t$0",
+			"\treturn (",
+			"\t\t<${1/(.*)/${1:/capitalize}/}Context.Provider value={{}}>",
+			"\t\t\t{children}",
+			"\t\t</${1/(.*)/${1:/capitalize}/}Context.Provider>",
+			"\t);",
+			"}",
+			"",
+			"export const use${1/(.*)/${1:/capitalize}/} = () => useContext(${1/(.*)/${1:/capitalize}/}Context);",
+			"",
+			"export default ${1/(.*)/${1:/capitalize}/}Provider;"
+		]
+	},
+	"Handler": {
+		"prefix": "h",
+		"body": [
+			"const handle${1/(.*)/${1:/capitalize}/} = () => {",
+			"\t$2",
+			"};$0"
+		]
+	},
+	"Default Props": {
+		"prefix": "dfp",
+		"body": [
 			"${TM_DIRECTORY/^.+\\/(.*)$/$1/}.defaultProps = {",
 			"\t$1",
 			"};"
 		]
 	},
-	"React map": {
-		"prefix": "rmap",
+	"JSX map": {
+		"prefix": "jmap",
 		"body": [
 			"{$1.map(($2) => (",
 			"\t$0",
 			"))}"
+		]
+	},
+	"JSX if": {
+		"prefix": "jif",
+		"body": [
+			"{${1:condition} && (",
+			"\t$0",
+			")}"
+		]
+	},
+	"useState Hook": {
+		"prefix": "us",
+		"body": "const [$1, set${1/(.*)/${1:/capitalize}/}] = useState($2);$0"
+	},
+	"useEffect Hook": {
+		"prefix": "ue",
+		"body": [
+			"useEffect(() => {",
+			"\t$1",
+			"}, [$2]);$0"
+		]
+	},
+	"useRef Hook": {
+		"prefix": "ur",
+		"body": "const $1Ref = useRef(${2:null});$0"
+	},
+
+	"Import Styled": {
+		"prefix": "is",
+		"body": "import styled from 'styled-components;$0"
+	},
+	"Export Component": {
+		"prefix": "ec",
+		"body": [
+			"export const ${1/(.*)/${1:/capitalize}/} = styled.$2`",
+			"\t$3",
+			"`;$0"
+		]
+	},
+
+	"Require": {
+		"prefix": "rq",
+		"body": "const $0 = require('$0');",
+		"description": "Require modules"
+	},
+	"Import": {
+		"prefix": "imp",
+		"body": "import $0 from '$0';",
+		"description": "Import modules"
+	},
+	"Console log": {
+		"prefix": "clg",
+		"body": "console.log($1);$0",
+		"description": "Log things"
+	},
+	"Inline Arrow Function": {
+		"prefix": "ifn",
+		"body": [
+			"($1) => { $0 };"
+		]
+	},
+	"Arrow Function": {
+		"prefix": "afn",
+		"body": [
+			"(${1:params}) => {",
+			"\t$2",
+			"};$0"
+		]
+	},
+	"Immediately Invoked Function Expression": {
+		"prefix": "iif",
+		"body": [
+			"(() => {",
+			"\t$0",
+			"})();"
+		]
+	},
+	"Export Default": {
+		"prefix": "exd",
+		"body": [
+			"export { default } from './${TM_DIRECTORY/^.+\\/(.*)$/$1/}';",
+			""
 		]
 	}
 }
